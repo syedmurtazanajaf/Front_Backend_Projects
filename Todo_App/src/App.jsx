@@ -7,14 +7,14 @@ const App = () => {
   const [editText, setEditText] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/todos")
+    fetch("http://192.168.100.6:5000/todos")
       .then((res) => res.json())
       .then((data) => setTodos(data));
   }, []);
 
   const addTodo = async () => {
     if (input.trim() === "") return;
-    const res = await fetch("http://localhost:5000/todos", {
+    const res = await fetch("http://192.168.100.6:5000/todos", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify({ text: input }),
@@ -26,7 +26,7 @@ const App = () => {
   };
 
   const deleteTodo = async (id) => {
-    await fetch(`http://localhost:5000/todos/${id}`, {
+    await fetch(`http://192.168.100.6:5000/todos/${id}`, {
       method: "DELETE",
     });
     setTodos(todos.filter((todo) => todo._id !== id));
@@ -38,7 +38,7 @@ const App = () => {
   };
 
   const updateTodo = async (id) => {
-    const res = await fetch(`http://localhost:5000/todos/${id}`,{
+    const res = await fetch(`http://192.168.100.6:5000/todos/${id}`,{
       method: "PUT",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify({ text: editText }),
